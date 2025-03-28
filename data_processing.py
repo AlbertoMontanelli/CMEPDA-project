@@ -1,13 +1,16 @@
+"""
+penso vada cambiato tutto perché si sono cambiati i tree, i file salvati, etc, però ci sono buoni spunti di idee
+"""
+
+
 import numpy as np
 import torch
 import uproot
 
 import features_list
 
-# Dizionari per le caratteristiche (ripresi da pythia_generator.py)
-features_list = ["id", "status", "px", "py", "pz", "e", "m"]
-features_23 = [f"{feature}_23" for feature in features_list if feature != "status"]
-features_final = [f"{feature}_final" for feature in features_list if feature != "status"]
+features_23 = ["_".join([feature, "23"]) for feature in features_list]
+features_final = ["_".join([feature, "final"]) for feature in features_list]
 
 def root_to_tensors(file_path, max_seq_len=None, normalize=True):
     """
